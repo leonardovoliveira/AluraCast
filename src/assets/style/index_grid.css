@@ -1,0 +1,207 @@
+body{
+	display: grid;
+	grid-template-areas:
+	"aside header"
+	"aside main";
+	grid-template-columns: auto 1fr;
+}
+
+.cabecalho{
+	grid-area: header;
+}
+
+.menu-lateral{
+	grid-area: aside;
+}
+
+.principal{
+	grid-area: main;
+}
+
+.secao{
+	display: grid;
+	align-items: center;
+}
+
+/*
+	secao-horizontal
+*/
+
+.secao-horizontal{
+	grid-template-rows: 120px auto;
+
+}
+
+.secao-horizontal .cartao{
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	column-gap: 1.25rem;
+}
+
+.secao-horizontal .cartao__imagem{
+	grid-area: 1/1/4/2;
+}
+
+.secao-horizontal .cartao__botao{
+	grid-area: 1/3/4/4;
+}
+
+.secao-horizontal .cartao__titulo{
+	align-self: center;
+}
+
+.secao-horizontal .secao__cartoes{
+	--quantidade-maxima-colunas: 3;
+	--min-largura-maxima-colunas: 348px;
+}
+
+/*
+	secao-vertical
+*/
+.secao__cartoes{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--minimo), 1fr));
+	gap: 1rem var(--gap-coluna);
+	
+	--gap-coluna: 1.25rem;
+	--gap-proporcional: var(--gap-coluna) * (var(--quantidade-maxima-colunas) - 1) / var(--quantidade-maxima-colunas);
+
+	--largura-minima-colunas: 100%/2 - var(--gap-proporcional);
+	
+	--max-largura-maxima-colunas: 100%/var(--quantidade-maxima-colunas);
+	--largura-maxima-colunas: max(var(--min-largura-maxima-colunas), var(--max-largura-maxima-colunas)) - var(--gap-proporcional);
+	--minimo: min(var(--largura-minima-colunas), var(--largura-maxima-colunas));
+}
+
+.secao-vertical{
+	grid-template-columns: 1fr auto;
+	grid-template-rows: 1fr 2fr;
+}
+
+.secao-vertical .secao__cartoes{
+	grid-column: 1/3;
+	--quantidade-maxima-colunas: 6;
+	--min-largura-maxima-colunas: 165px;
+	
+}
+
+.secao-vertical .cartao{
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+/*
+	menu lateral
+*/
+
+.menu-lateral{
+	display: grid;
+	grid-template-rows: repeat(3, auto) 1fr;
+	row-gap: 2rem;
+}
+
+.menu-lateral__logo{
+	justify-self: center;
+}
+
+/*
+	navbar
+*/
+
+.navbar__items{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr) ;
+}
+
+/*
+	footer
+*/
+/*rodape*/
+.rodape {
+    background-color: var(--azul-medio);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Genericos como barra, botao, etc) */
+.rodape__barra {
+    position: relative;
+    opacity: 0.9;
+    border-radius: 10px;
+    background-color: white;
+    height: 4px;
+}
+
+.rodape__barra div {
+    position: absolute;
+    top: 0;
+    height: 4px;
+    border-radius: 10px;
+    opacity: 0.35;
+    background-color: white;
+}
+
+.rodape__horario {
+    font-size: .75rem;
+}
+
+.barra__container--reproducao, .rodape__barra--reproducao div {
+    width: 37vw
+}
+
+.rodape__barra--reproducao {
+    width: 25vw;
+}
+
+.barra__container--volume, .rodape__barra--volume div  {
+    width: 8vw;
+}
+
+.rodape__barra--volume {
+    width: 4vw;
+}
+
+/*
+	rodape
+*/
+
+.rodape {
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+    grid-template-columns: auto 2fr auto 1fr repeat(3, auto) 1fr auto 1.5fr repeat(2, auto);
+    align-items: center;
+    column-gap: 0.5rem;   
+}
+
+.rodape__imagem {
+    grid-row: 1/3;
+}
+
+.rodape__subtitulo,
+.rodape__horario--inicio,
+.barra__container--reproducao,
+.rodape__botao--volume-down,
+.rodape__horario--termino,
+.barra__container--volume,
+.rodape__botao--volume-up {
+	grid-row: 2/3;
+}
+
+.rodape__botao--voltar {
+    grid-column: 4/5;
+	justify-self: end;
+}
+
+.barra__container--reproducao {
+    grid-column: 4/9;
+}
+
+.rodape__botao--proximo {
+    justify-self: left;
+}
+
+.rodape__botao--volume-down{
+	justify-self: end;
+}
